@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="import.sql" type="DatabaseScript" editBeforeRun="true" focusToolWindowBeforeRun="true" singleton="false" nameIsGenerated="true">
+    <script-file value="$PROJECT_DIR$/backend/src/main/java/com/backend/resources/import.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="2ebba333-d00d-4038-aa17-4849e7b612c3" />
+    <method v="2" />
+  </configuration>
+</component>
