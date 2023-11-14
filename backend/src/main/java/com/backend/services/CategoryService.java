@@ -3,11 +3,13 @@ package com.backend.services;
 import com.backend.dto.CategoryDTO;
 import com.backend.entities.Category;
 import com.backend.repositories.CategoryRepository;
-import org.springframework.transaction.annotation.Transactional;
+import com.backend.services.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,8 +23,22 @@ public class CategoryService {
         List<Category> list = repository.findAll();
         return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
 
-
-
     }
+
+    @Transactional(readOnly = true)
+    public CategoryDTO findById(Long id) {
+        Optional<Category> obj = repository.findById(id);
+        Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found!"));
+        return new CategoryDTO(entity);
+    };
+
+    @Transactional
+    public CategoryDTO insert(CategoryDTO dto) {
+        Category entity = new Category();
+        entity.setName(dto.getName());
+        entity = repository.save(entity);
+        return new CategoryDTO(entity);
+    }
+
 
 }
