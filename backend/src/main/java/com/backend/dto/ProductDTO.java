@@ -2,14 +2,14 @@ package com.backend.dto;
 
 import com.backend.entities.Category;
 import com.backend.entities.Product;
-import jakarta.persistence.Column;
+
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ProductsDTO {
+public class ProductDTO {
 
     private Long id;
     private String name;
@@ -20,10 +20,10 @@ public class ProductsDTO {
 
     private List<CategoryDTO> categories = new ArrayList<>();
 
-    public ProductsDTO(){
+    public ProductDTO(){
     }
 
-    public ProductsDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
+    public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,8 +32,8 @@ public class ProductsDTO {
         this.date = date;
     }
 
-    public ProductsDTO(Product entity) {
-        this.id = entity.getId()
+    public ProductDTO(Product entity) {
+        this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
         this.price = entity.getPrice();
@@ -41,7 +41,7 @@ public class ProductsDTO {
         this.date = entity.getDate();
     }
 
-    public ProductsDTO(Product entity, Set<Category> categories){
+    public ProductDTO(Product entity, Set<Category> categories){
         this(entity);
         categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }
